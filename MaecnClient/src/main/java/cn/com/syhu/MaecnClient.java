@@ -44,9 +44,9 @@ public class MaecnClient {
                 "&uid=" + maecnConfig.getUid() +
                 "&type=" + payInfo.getType() +
                 "&name=" + payInfo.getName() +
-                "&money=" + String.format("%.2f", payInfo.getMoney()) +
-                "&time=" + time;
-        if (!status.isEmpty()) params += "&status=" + status;
+                "&money=" + String.format("%.2f", payInfo.getMoney());
+        if (time != null && !time.isEmpty()) params += "&time=" + time;
+        if (status != null && !status.isEmpty()) params += "&status=" + status;
         params += maecnConfig.getPrivateKey();
         return Objects.requireNonNull(MD5Util.md5Lower(params)).equals(sign.toLowerCase());
     }
